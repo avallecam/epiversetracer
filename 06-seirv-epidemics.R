@@ -38,7 +38,7 @@ initial_conditions <- matrix(
 
 # poblacion structure
 population_object <- epidemics::population(
-  name = socialsurvey_country,
+  name = "Peru",
   contact_matrix = socialcontact_matrix,
   demography_vector = demography_vector,
   initial_conditions = initial_conditions
