@@ -11,7 +11,7 @@
 socialmixr::list_surveys()
 
 # transmission
-socialsurvey_link <- "https://doi.org/10.5281/zenodo.3874805" # polymod
+socialsurvey_link <- "https://doi.org/10.5281/zenodo.3874805"
 socialsurvey_country <- "Peru"
 age_limits <- c(0, 20, 40)
 
