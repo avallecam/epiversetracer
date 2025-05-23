@@ -196,4 +196,4 @@ compare_interventions %>%
 
 #' next steps:
 #' - tutorials late episode 4 https://epiverse-trace.github.io/tutorials-late/modelling-interventions.html
-#' - package reference manual https://epiverse-trace.github.io/epidemics/
+#' - {epidemics} reference manual https://epiverse-trace.github.io/epidemics/

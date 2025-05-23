@@ -36,4 +36,4 @@ superspreading::proportion_cluster_size(
 
 #' next steps:
 #' - tutorials middle episode 6-7 https://epiverse-trace.github.io/tutorials-middle/superspreading-estimate.html
-#' - package vignettes https://epiverse-trace.github.io/superspreading/
+#' - {superspreading} vignettes https://epiverse-trace.github.io/superspreading/

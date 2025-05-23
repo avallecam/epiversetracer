@@ -42,6 +42,6 @@ dat %>%
 
 #' next steps:
 #' - tutorials middle episode 1-5 https://epiverse-trace.github.io/tutorials-middle/
-#' - package vignette https://epiverse-trace.github.io/cfr/articles/estimate_ascertainment.html
+#' - {cfr} vignette https://epiverse-trace.github.io/cfr/articles/estimate_ascertainment.html
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/estimate_severity/cfr-stratified-severity.html
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/reconstruct_transmission/estimate_infections.html

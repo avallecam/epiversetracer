@@ -28,3 +28,4 @@ dat_validated %>%
 #' next step:
 #' - tutorials early episode 4 https://epiverse-trace.github.io/tutorials-early/describe-cases.html
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/describe_cases/cleanepi-linelist-incidence2-stratified.html
+#' - {incidence2} reference guide https://www.reconverse.org/incidence2/

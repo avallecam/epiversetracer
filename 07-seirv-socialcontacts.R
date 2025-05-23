@@ -117,5 +117,5 @@ simulate_baseline %>%
 #' next steps:
 #' - tutorials late episodes 1-2 https://epiverse-trace.github.io/tutorials-late/contact-matrices.html
 #' - run the next script
-#' - package finalsize https://epiverse-trace.github.io/finalsize/
+#' - {finalsize} reference manual https://epiverse-trace.github.io/finalsize/
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/simulate_transmission/finalsize_heterogenious_between_within.html
