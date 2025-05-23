@@ -4,6 +4,8 @@
 #' task: 
 #' - identify how the input changes running step by step
 
+#' note: depends on previous script
+
 library(linelist)
 
 dat
