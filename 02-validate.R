@@ -8,7 +8,8 @@
 
 library(linelist)
 
-dat
+dat # messy
+out # cleaned
 
 linelist::tags_names()
 linelist::tags_types()
