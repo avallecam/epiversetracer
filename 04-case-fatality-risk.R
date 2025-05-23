@@ -4,9 +4,9 @@
 #' task: 
 #' - identify how the input changes running step by step
 
-library(tidyverse)
-library(epiparameter)
 library(cfr)
+library(epiparameter)
+library(tidyverse)
 
 dat <- readr::read_rds(
   "https://epiverse-trace.github.io/tutorials-middle/data/mers_linelist.rds"

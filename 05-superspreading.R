@@ -5,10 +5,10 @@
 #' task: 
 #' - identify how the input changes running step by step
 
-library(tidyverse)
 library(epicontacts)
 library(fitdistrplus)
 library(superspreading)
+library(tidyverse)
 
 mers_set <- outbreaks::mers_korea_2015
 

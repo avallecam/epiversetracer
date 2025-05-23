@@ -4,9 +4,9 @@
 #' task: 
 #' - identify how the input changes running step by step
 
-library(tidyverse)
-library(socialmixr)
 library(epidemics)
+library(socialmixr)
+library(tidyverse)
 
 # SEIR-V
 

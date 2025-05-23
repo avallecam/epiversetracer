@@ -4,12 +4,7 @@
 #' task: 
 #' - identify how the input changes running step by step
 
-library(tidyverse)
-library(socialmixr)
-library(epidemics)
-
-# SEIR-V
-
+#' note: depends on previous script
 
 # {socialmixr} -----------------------------------------------------------
 

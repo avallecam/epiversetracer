@@ -4,6 +4,8 @@
 #' task: 
 #' - identify how the input changes running step by step
 
+library(linelist)
+
 dat
 
 linelist::tags_names()
