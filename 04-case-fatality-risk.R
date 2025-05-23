@@ -45,3 +45,4 @@ dat %>%
 #' - {cfr} vignette https://epiverse-trace.github.io/cfr/articles/estimate_ascertainment.html
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/estimate_severity/cfr-stratified-severity.html
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/reconstruct_transmission/estimate_infections.html
+

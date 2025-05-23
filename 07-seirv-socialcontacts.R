@@ -119,3 +119,4 @@ simulate_baseline %>%
 #' - run the next script
 #' - {finalsize} reference manual https://epiverse-trace.github.io/finalsize/
 #' - how-to guide https://epiverse-trace.github.io/howto/analyses/simulate_transmission/finalsize_heterogenious_between_within.html
+
