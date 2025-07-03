@@ -7,36 +7,27 @@
 library(cleanepi)
 library(tidyverse)
 
-dat <- readr::read_csv(
+dat <- rio::import(
   "https://epiverse-trace.github.io/tutorials-early/data/simulated_ebola_2.csv"
-)
+) %>% dplyr::as_tibble()
 
-dat_dictionary <- tibble::tribble(
-  ~options,  ~values,     ~grp, ~orders,
-  "1",   "male", "gender",      1L, 
-  "2", "female", "gender",      2L,
-  "M",   "male", "gender",      3L,
-  "F", "female", "gender",      4L,
-  "m",   "male", "gender",      5L,
-  "f", "female", "gender",      6L
+dat_dictionary <- readRDS(
+  system.file("extdata", "test_dict.RDS", package = "cleanepi")
 )
 
 dat_dictionary
 
+dat %>%
+  cleanepi::scan_data() %>% 
+  dplyr::mutate(across(-Field_names,~ .* 100))
+
 out <- dat %>%
+  cleanepi::replace_missing_values() %>%
   cleanepi::standardize_column_names() %>%
-  cleanepi::remove_constants() %>%
-  cleanepi::remove_duplicates() %>%
-  cleanepi::check_subject_ids(
-    target_columns = "case_id",
-    range = c(0, 15000)
-  ) %>%
-  cleanepi::standardize_dates(
-    target_columns = c("date_onset", "date_sample"),
-    timeframe = c(lubridate::ymd("20140101"), lubridate::ymd("20161201"))
-  ) %>% 
-  cleanepi::convert_to_numeric(target_columns = "age") %>% 
-  cleanepi::clean_using_dictionary(dictionary = dat_dictionary)
+  cleanepi::convert_to_numeric(target_columns = "age") %>%
+  cleanepi::clean_using_dictionary(dictionary = dat_dictionary) %>%
+  cleanepi::standardize_dates(target_columns = c("date_onset", "date_sample")) %>% 
+  cleanepi::check_date_sequence(target_columns = c("date_onset", "date_sample"))
 
 out
 
