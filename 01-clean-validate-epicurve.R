@@ -1,3 +1,5 @@
+# after cleanepi update change to date_sample
+
 library(tidyverse)
 
 dat <- rio::import(file = "https://epiverse-trace.github.io/tutorials-early/data/simulated_ebola_2.csv") %>%
@@ -6,6 +8,8 @@ dat <- rio::import(file = "https://epiverse-trace.github.io/tutorials-early/data
 dat_dictionary <- readRDS(system.file("extdata", "test_dict.RDS", package = "cleanepi"))
 
 dat_dictionary
+
+linelist::tags_names()
 
 # clean data
 dat %>%
