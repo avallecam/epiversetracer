@@ -12,15 +12,14 @@ library(tidyverse)
 
 mers_set <- outbreaks::mers_korea_2015
 
+mers_set
+
 # contact data
+# transmission events
+# with a direction
 # from infector 
 # to infectee
 head(mers_set$contacts)
-
-# contact only have 98 relations
-dim(mers_set$contacts)
-dim(mers_set$linelist)
-
 
 # estimate parameters from offspring distribution ------------------------
 
@@ -36,15 +35,27 @@ fit_estimates <- epicontacts::make_epicontacts(
     type = "out",
     only_linelist = TRUE
   ) %>% 
-  # plot: distribution of secondary cases
+  # plot: 
+  # distribution of secondary cases
   # hist(breaks= 40)
   # fitted: offspring distribution
   fitdistrplus::fitdist(distr = "nbinom")
 
-# (individual-level) reproduction number
-# mean = (population) reproduction number
-# k = dispersion parameter
-# the smallest - more dispersed
+# we fit distributions
+# to make inferences from them
+
+# from (individual-level) reproduction number
+# we fit a negative binomial to 
+# describe the offspring distribution 
+# with parameters:
+# mean = R = (population) reproduction number
+# size = k = dispersion parameter
+
+superspreading::proportion_cluster_size()
+
+# probability of 
+# observing explosive outbreaks
+epichains::simulate_chains()
 
 # estimate proportion cluster size ---------------------------------------
 
