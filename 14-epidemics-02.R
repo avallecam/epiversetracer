@@ -56,7 +56,7 @@ population_object <- epidemics::population(
 population_object
 
 # SEIR-V
-# S > E : transmission rate   = R0 / infectious period
+# S > E : transmission rate   = R0 * recovery rate
 # E > I : infectiousness rate = 1 / latent period
 # I > R : recovery rate       = 1 / infectious period
 
