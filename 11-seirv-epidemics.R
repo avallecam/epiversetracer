@@ -28,8 +28,7 @@ initial_conditions <- matrix(
     R = 0,
     V = 0
   ),
-  nrow = 1,
-  ncol = 5
+  nrow = 1
 )
 
 
