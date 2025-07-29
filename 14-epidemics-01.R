@@ -63,8 +63,8 @@ output %>%
   ggplot(aes(
     x = time,
     y = value,
-    color = demography_group,
-    linetype = compartment
+    color = compartment,
+    linetype = demography_group
   )) + geom_line()
 
 # print the time and size of peak
