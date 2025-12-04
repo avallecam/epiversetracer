@@ -1,23 +1,39 @@
+# load packages
 library(epidemics)
 library(socialmixr)
 library(tidyverse)
 library(epiparameter)
 library(EpiEstim)
 
+# Import linelist data ------------------------------------------
+
+# load data
 data("Flu2009")
 
-early_flu_data <- Flu2009$incidence 
+# filter incidence data
+early_flu_data <- Flu2009$incidence %>%
+  dplyr::filter(dates < "2009-05-10")
 
+# Access delays distributions -----------------------------------
+
+# access serial interval
 flu_si <- epiparameter::epiparameter_db(
   disease = "influenza",
   epi_name = "serial interval",
   single_epiparameter = TRUE,
 )
-params <- epiparameter::get_parameters(flu_si)
-si_dist <- dgamma(seq(0, 25), shape = params["shape"], scale = params["scale"])
-si_dist <- si_dist/sum(si_dist)
 
+# get a discrete gamma distribution
+si_dist <- flu_si %>% 
+  epiparameter::discretise() %>% 
+  density(at = seq(0, 25))
 
+# ensure probabilities add up to 1 by normalising them by the sum
+si_dist %>% sum()
+
+# Estimate reproduction number ----------------------------------
+
+# Use EpiEstim to estimate R with uncertainty
 output_Rt <- EpiEstim::estimate_R(
   incid = early_flu_data, 
   method = "non_parametric_si",
@@ -26,9 +42,12 @@ output_Rt <- EpiEstim::estimate_R(
 
 plot(output_Rt)
 
+# get mean mean over time
 Rt <- mean(output_Rt$R$`Mean(R)`)
 
+# Set up the transmission model -------------------------------------------
 
+# access to social contact survey data
 zimb_survey <- socialmixr::get_survey("https://doi.org/10.5281/zenodo.3886638")
 
 cnt_data <- socialmixr::contact_matrix(
@@ -41,14 +60,28 @@ cnt_data <- socialmixr::contact_matrix(
 #x = epiparameter::epiparameter_db(disease = "influenza", epi_name = "incubation period", single_epiparameter = T)
 # convert_params_to_summary_stats(x)$mean
 
+# get contact matrix
 cnt_matrix <- t(cnt_data$matrix)
 
+cnt_matrix
+
+# get demography vector
 demo_vector <- cnt_data$demography$population
 names(demo_vector) = rownames(cnt_matrix)
 
+demo_vector
+
+# define initial conditions
 initial_i <- 1e-4
 
-init_cond <- c(S = 1-initial_i, E = 0, I = initial_i, R =0, V = 0)
+init_cond <- c(
+  S = 1 - initial_i,
+  E = 0,
+  I = initial_i,
+  R = 0,
+  V = 0
+)
+
 init_cond_matrix <- rbind(
   init_cond, 
   init_cond,
@@ -57,6 +90,9 @@ init_cond_matrix <- rbind(
 
 rownames(init_cond_matrix) <- rownames(cnt_matrix)
 
+init_cond_matrix
+
+# define the population object
 zimb_pop <- epidemics::population(
   name = "Zimbabwe",
   demography_vector = demo_vector,
@@ -64,8 +100,10 @@ zimb_pop <- epidemics::population(
   initial_conditions = init_cond_matrix
 )
 
+# Simulate scenario ------------------------------------------------
+
 infectious_period <- 7
-beta <- Rt/infectious_period
+beta <- Rt / infectious_period
 
 base_model <- epidemics::model_default(
   population = zimb_pop, 
@@ -95,7 +133,7 @@ base_model %>%
   theme(legend.position = "top")+
   labs(
     x = "Simulation time (days)",
-    y = "Infected individuals"
+    y = "Infectious individuals"
   )
 
 close_work <- epidemics::intervention(
@@ -135,8 +173,18 @@ output %>%
   theme(legend.position = "top")+
   labs(
     x = "Simulation time (days)",
-    y = "Infected individuals"
+    y = "Infectious individuals"
   )
 
 
+# Test yourself -------------------------------------
 
+# Challenge 1
+# - access the tutorial on simulating transmission
+# - read how to account for uncertainty in simulations using {epidemics}
+# link: https://epiverse-trace.github.io/tutorials-late/simulating-transmission.html
+
+# Challenge 2
+# - access the article vignettes in the package website
+# - read how to model overlapping and sequential interventions using {epidemics}
+# link: https://epiverse-trace.github.io/epidemics/dev/articles/
