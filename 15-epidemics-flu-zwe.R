@@ -188,3 +188,9 @@ output %>%
 # - access the article vignettes in the package website
 # - read how to model overlapping and sequential interventions using {epidemics}
 # link: https://epiverse-trace.github.io/epidemics/dev/articles/
+
+# Challenge 3
+# - access the how-to guide on "Simulate Pandemic Scenarios with Uncertainty"
+# - propose one package that could improve the traceability of the input parameters
+# - fill in an issue on the GitHub repository with your proposal
+# link: https://epiverse-trace.github.io/howto/analyses/simulate_transmission/epidemics-scenarios-uncertainty.html
